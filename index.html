@@ -304,9 +304,7 @@
                 <p>10. Ao prosseguir com a assinatura, você declara estar ciente e de acordo com todos os termos acima.</p>
             </div>
             
-            <button type="button" class="btn-next" id="next-btn">
-                <i class="fas fa-arrow-right"></i> Concordo e Prosseguir
-            </button>
+            <!-- Botão removido conforme solicitado -->
         </div>
         
         <div class="tab-content" id="data-tab">
@@ -401,11 +399,7 @@
                 });
             });
             
-            // Navegação entre abas
-            document.getElementById('next-btn').addEventListener('click', () => {
-                navigateToTab('data');
-            });
-            
+            // Navegação entre abas - removida a referência ao botão excluído
             document.getElementById('data-next-btn').addEventListener('click', () => {
                 // Validar dados antes de prosseguir
                 const name = document.getElementById('name').value;
