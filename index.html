@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura Digital - LEGADO_RP</title>
+    <title>Assinatura Digital Dev Store - Dev Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -25,7 +25,7 @@
         }
         
         body {
-            background-color: var(--dark);
+            background-color: var(dark);
             color: white;
             line-height: 1.6;
             overflow-x: hidden;
@@ -47,7 +47,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(border);
             top: 0;
         }
         
@@ -68,7 +68,7 @@
         }
         
         .logo span {
-            color: var(--accent);
+            color: var(accent);
         }
         
         nav ul {
@@ -89,7 +89,7 @@
         }
         
         nav a:hover {
-            color: var(--accent);
+            color: var(accent);
         }
         
         nav a::after {
@@ -99,7 +99,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--accent);
+            background-color: var(accent);
             transition: width 0.3s;
         }
         
@@ -108,7 +108,7 @@
         }
         
         .connect-btn {
-            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            background: linear-gradient(90deg, var(accent), var(accent-dark));
             color: white;
             border: none;
             padding: 0.7rem 1.5rem;
@@ -133,14 +133,14 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border);
+            border: 1px solid var(border);
             backdrop-filter: blur(10px);
             margin: 20px 0;
         }
         
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80') center/cover;
+                        url('https://gifyu.com/image/bTPFi') center/cover;
             padding: 40px 20px;
             text-align: center;
             position: relative;
@@ -160,20 +160,20 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 2rem;
-            color: var(--light-gray);
+            color: var(light-gray);
         }
         
         .tabs {
             display: flex;
             background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(border);
         }
         
         .tab {
             padding: 15px 20px;
             cursor: pointer;
             font-weight: 600;
-            color: var(--gray);
+            color: var(gray);
             transition: all 0.3s;
             text-align: center;
             flex: 1;
@@ -182,13 +182,13 @@
         }
         
         .tab.active {
-            color: var(--accent);
-            border-bottom: 3px solid var(--accent);
+            color: var(accent);
+            border-bottom: 3px solid var(accent);
             background: rgba(0, 106, 176, 0.1);
         }
         
         .tab:hover {
-            color: var(--accent-light);
+            color: var(accent-light);
         }
         
         .tab-content {
@@ -208,7 +208,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--accent-light);
+            color: var(accent-light);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -219,7 +219,7 @@
             width: 100%;
             padding: 14px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
+            border: 1px solid var(border);
             border-radius: 4px;
             font-size: 16px;
             transition: all 0.3s;
@@ -229,7 +229,7 @@
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="tel"]:focus {
-            border-color: var(--accent);
+            border-color: var(accent);
             outline: none;
             box-shadow: 0 0 10px rgba(19, 168, 236, 0.3);
         }
@@ -238,7 +238,7 @@
             width: 100%;
             padding: 14px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
+            border: 1px solid var(border);
             border-radius: 4px;
             font-size: 16px;
             transition: border-color 0.3s;
@@ -248,7 +248,7 @@
         }
         
         .text-signature:focus {
-            border-color: var(--accent);
+            border-color: var(accent);
             outline: none;
             box-shadow: 0 0 10px rgba(19, 168, 236, 0.3);
         }
@@ -270,12 +270,12 @@
         }
         
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            background: linear-gradient(90deg, var(accent), var(accent-dark));
             color: white;
         }
         
         .btn-primary:hover {
-            background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+            background: linear-gradient(90deg, var(accent-dark), var(accent-light));
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 106, 176, 0.3);
         }
@@ -316,28 +316,28 @@
         
         .instructions {
             background: rgba(248, 249, 250, 0.05);
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid var(accent);
             padding: 15px;
             margin: 20px 0;
             border-radius: 4px;
             font-size: 0.95rem;
-            color: var(--light-gray);
+            color: var(light-gray);
         }
         
         .terms-content {
             max-height: 300px;
             overflow-y: auto;
             padding: 15px;
-            border: 1px solid var(--border);
+            border: 1px solid var(border);
             border-radius: 8px;
             margin-bottom: 20px;
             background: rgba(249, 249, 249, 0.05);
-            color: var(--light-gray);
+            color: var(light-gray);
         }
         
         .terms-content h3 {
             margin-bottom: 15px;
-            color: var(--accent);
+            color: var(accent);
         }
         
         .terms-content p {
@@ -347,7 +347,7 @@
         footer {
             text-align: center;
             margin-top: 30px;
-            color: var(--gray);
+            color: var(gray);
             font-size: 14px;
             padding: 20px;
         }
@@ -438,7 +438,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="https://s14.gifyu.com/images/bTNms.png" alt="Logo LEGADO_RP">
+            <img src="https://gifyu.com/image/bTPV4" alt="Logo Dev Store">
             <h1>LEGADO<span>_RP</span></h1>
         </div>
         <nav>
@@ -448,7 +448,6 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <button class="connect-btn" onclick="connectToServer()">Conectar agora</button>
     </header>
     
     <div class="container">
@@ -469,17 +468,19 @@
             </div>
             
             <div class="terms-content">
-                <h3>Termos e Condições de Uso</h3>
-                <p>1. Ao assinar este documento, você concorda com os termos aqui estabelecidos.</p>
-                <p>2. A assinatura digital tem o mesmo valor legal de uma assinatura física de acordo com a Lei nº 14.063/2020.</p>
-                <p>3. Você declara que todas as informações fornecidas são verídicas e assume total responsabilidade por elas.</p>
-                <p>4. O contrato será considerado válido após a confirmação do pagamento e aprovação dos dados.</p>
-                <p>5. Caso haja discordância com qualquer termo aqui estabelecido, cancele imediatamente o processo de assinatura.</p>
-                <p>6. Os dados coletados serão utilizados exclusivamente para finalidades contratuais e não serão compartilhados com terceiros, exceto quando exigido por lei.</p>
-                <p>7. Você tem direito de solicitar a exclusão de seus dados a qualquer momento, entrando em contato com nossa central de atendimento.</p>
-                <p>8. O prazo de validade deste documento é de 30 dias a partir da data de assinatura.</p>
-                <p>9. Quaisquer disputas oriundas deste contrato serão resolvidas no foro da comarca onde a empresa está estabelecida.</p>
-                <p>10. Ao prosseguir com a assinatura, você declara estar ciente e de acordo com todos os termos acima.</p>
+                 <h3>Termos e Condições de Uso</h3>
+                 <p>1. Ao assinar este documento, você concorda com os termos aqui estabelecidos para a aquisição de um produto digital.</p>
+                 <p>2. A assinatura digital tem o mesmo valor legal de uma assinatura física de acordo com a Lei nº 14.063/2020.</p>
+                 <p>3. Você declara que todas as informações fornecidas são verídicas e assume total responsabilidade por elas.</p>
+                 <p>4. O contrato será considerado válido após a confirmação do pagamento e aprovação dos dados, dando direito ao acesso ao produto digital.</p>
+                 <p>5. <strong>Este produto é digital e, portanto, não é passível de reembolso ou cancelamento após a confirmação da compra e disponibilização do acesso.</strong></p>
+                 <p>6. O suporte técnico relacionado ao produto digital estará disponível por um período de 5 (cinco) dias úteis a partir da data de liberação de acesso.</p>
+                 <p>7. Caso haja discordância com qualquer termo aqui estabelecido, cancele imediatamente o processo de assinatura antes de concluí-lo.</p>
+                 <p>8. Os dados coletados serão utilizados exclusivamente para finalidades contratuais e não serão compartilhados com terceiros, exceto quando exigido por lei.</p>
+                 <p>9. Você tem direito de solicitar a exclusão de seus dados a qualquer momento, entrando em contato com nossa central de atendimento, respeitadas as disposições legais de guarda de documentação.</p>
+                 <p>10. O prazo de validade deste documento é de 30 dias a partir da data de assinatura.</p>
+                 <p>11. Quaisquer disputas oriundas deste contrato serão resolvidas no foro da comarca onde a empresa está estabelecida.</p>
+                 <p>12. Ao prosseguir com a assinatura, você declara estar ciente e de acordo com todos os termos acima, inclusive sobre a natureza digital do produto, a política de não reembolso e o prazo de suporte.</p>
             </div>
             
             <button type="button" class="btn-next" id="next-btn">
@@ -550,7 +551,7 @@
     
     <footer>
         <div class="footer-logo">
-            <img src="https://s14.gifyu.com/images/bTNms.png" alt="Logo LEGADO_RP">
+            <img src="https://gifyu.com/image/bTPV4" alt="Logo Dev Store">
             <h3>LEGADO<span>_RP</span></h3>
         </div>
         <p>© 2025 LEGADO_RP - Sistema de Assinatura Digital. Todos os direitos reservados.</p>
@@ -695,11 +696,7 @@
             });
         });
 
-        // Função para conectar ao servidor FiveM
-        function connectToServer() {
-            // Substitua pelo link de conexão do seu servidor FiveM
-            window.location.href = 'fivem://connect/181.214.48.26';
-        }
     </script>
 </body>
 </html>
+
