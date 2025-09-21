@@ -452,7 +452,7 @@
                 <p>4. O contrato será considerado válido após a confirmação do pagamento e aprovação dos dados.</p>
                 <p>5. Caso haja discordância com qualquer termo aqui estabelecido, cancele imediatamente o processo de assinatura.</p>
                 <p>6. Os dados coletados serão utilizados exclusivamente para finalidades contratuais e não serão compartilhados com terceiros, exceto quando exigido por lei.</p>
-                <p>7. Você tem direito de solicitar a exclusão de seus dados a qualquer momento, entrando em contato com nossa central de atendimento.</p>
+                <p>7. Você tem direito de solicitar a exclusão de seus dados a qualquer momento, entrando em contato conosco.</p>
                 <p>8. O prazo de validade deste documento é de 30 dias a partir da data de assinatura.</p>
                 <p>9. Quaisquer disputas oriundas deste contrato serão resolvidas no foro da comarca onde a empresa está estabelecida.</p>
                 <p>10. Ao prosseguir com a assinatura, você declara estar ciente e de acordo com todos os termos acima.</p>
@@ -601,7 +601,7 @@
             const successMessage = document.getElementById('success-message');
             const textSignature = document.getElementById('text-signature');
             
-            confirmBtn.addEventListener('click', function() {
+            confirmBtn.addEventListener('click', async function() {
                 // Verificar se a assinatura textual foi preenchida
                 if (!textSignature.value) {
                     alert('Por favor, digite sua assinatura para confirmar.');
@@ -627,30 +627,43 @@
                     text_signature: textSignature.value
                 };
                 
-                // Enviar email usando EmailJS
-                emailjs.send('service_3n02aji', 'template_o4mfsc6', {
-                    to_name: 'DevStore',
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    phone: formData.phone,
-                    text_signature: formData.text_signature,
-                    to_email: 'devstore.vendas@gmail.com'
-                })
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                try {
+                    // Enviar email para a loja
+                    const emailToStore = emailjs.send('service_3n02aji', 'template_o4mfsc6', {
+                        to_name: 'DevStore',
+                        from_name: formData.name,
+                        from_email: formData.email,
+                        phone: formData.phone,
+                        text_signature: formData.text_signature,
+                        to_email: 'devstore.vendas@gmail.com'
+                    });
+                    
+                    // Enviar email de confirmação para o cliente
+                    const emailToClient = emailjs.send('service_3n02aji', 'template_client_confirmation', {
+                        to_name: formData.name,
+                        from_name: 'DevStore',
+                        client_email: formData.email,
+                        text_signature: formData.text_signature,
+                        date: new Date().toLocaleDateString('pt-BR')
+                    });
+                    
+                    // Aguardar ambos os emails serem enviados
+                    await Promise.all([emailToStore, emailToClient]);
+                    
+                    console.log('Emails enviados com sucesso!');
                     
                     // Mostrar mensagem de sucesso
                     document.querySelector('#confirmation-tab .btn-primary').style.display = 'none';
                     document.querySelector('#confirmation-tab .btn-back').style.display = 'none';
                     successMessage.style.display = 'block';
-                }, function(error) {
-                    console.log('FAILED...', error);
+                } catch (error) {
+                    console.log('Falha no envio...', error);
                     alert('Ocorreu um erro ao enviar a assinatura. Por favor, tente novamente.');
                     
                     // Reativar botão
                     confirmBtn.disabled = false;
                     confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmar e Finalizar';
-                });
+                }
             });
             
             // Formatação do telefone
@@ -673,6 +686,3 @@
     </script>
 </body>
 </html>
-
-
-
