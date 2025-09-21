@@ -415,6 +415,17 @@
             background-size: 20px 20px;
             z-index: -1;
         }
+        
+        .error-message {
+            display: none;
+            background: rgba(220, 53, 69, 0.1);
+            color: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -446,7 +457,7 @@
             
             <div class="terms-content">
                 <h3>Termos e Condições de Uso</h3>
-                <p>1. Ao assinar este documento, você concorda com os termos aqui estabelecidos.</p>
+                <p>1. Ao assinar este documento, você concorda dengan os termos aqui estabelecidos.</p>
                 <p>2. A assinatura digital tem o mesmo valor legal de uma assinatura física de acordo com a Lei nº 14.063/2020.</p>
                 <p>3. Você declara que todas as informações fornecidas são verídicas e assume total responsabilidade por elas.</p>
                 <p>4. O contrato será considerado válido após a confirmação do pagamento e aprovação dos dados.</p>
@@ -520,6 +531,13 @@
                 <i class="fas fa-check-circle"></i>
                 <h3>Assinatura enviada com sucesso!</h3>
                 <p>Uma cópia foi enviada para seu email e para devstore.vendas@gmail.com</p>
+            </div>
+            
+            <div id="error-message" class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Erro no envio</h3>
+                <p>Ocorreu um erro ao enviar a assinatura. Por favor, tente novamente.</p>
+                <p id="error-details" style="font-size: 12px; margin-top: 10px;"></p>
             </div>
         </div>
     </div>
@@ -599,6 +617,8 @@
             // Confirmar e finalizar
             const confirmBtn = document.getElementById('confirm-btn');
             const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const errorDetails = document.getElementById('error-details');
             const textSignature = document.getElementById('text-signature');
             
             confirmBtn.addEventListener('click', async function() {
@@ -619,36 +639,39 @@
                 confirmBtn.disabled = true;
                 confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
                 
+                // Esconder mensagens de erro/sucesso anteriores
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
                 // Coletar dados do formulário
                 const formData = {
                     name: name,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value,
-                    text_signature: textSignature.value
+                    text_signature: textSignature.value,
+                    date: new Date().toLocaleDateString('pt-BR')
                 };
                 
                 try {
-                    // Enviar email para a loja
-                    const emailToStore = emailjs.send('service_3n02aji', 'template_o4mfsc6', {
+                    // Primeiro: enviar email para a loja
+                    await emailjs.send('service_3n02aji', 'template_o4mfsc6', {
                         to_name: 'DevStore',
                         from_name: formData.name,
                         from_email: formData.email,
                         phone: formData.phone,
                         text_signature: formData.text_signature,
-                        to_email: 'devstore.vendas@gmail.com'
+                        date: formData.date
                     });
                     
-                    // Enviar email de confirmação para o cliente
-                    const emailToClient = emailjs.send('service_3n02aji', 'template_client_confirmation', {
+                    // Segundo: enviar email de confirmação para o cliente
+                    await emailjs.send('service_3n02aji', 'template_o4mfsc6', {
                         to_name: formData.name,
+                        to_email: formData.email,
                         from_name: 'DevStore',
-                        client_email: formData.email,
                         text_signature: formData.text_signature,
-                        date: new Date().toLocaleDateString('pt-BR')
+                        date: formData.date,
+                        message: `Olá ${formData.name}, confirmamos o recebimento da sua assinatura digital em ${formData.date}. Obrigado por escolher a DevStore!`
                     });
-                    
-                    // Aguardar ambos os emails serem enviados
-                    await Promise.all([emailToStore, emailToClient]);
                     
                     console.log('Emails enviados com sucesso!');
                     
@@ -658,7 +681,10 @@
                     successMessage.style.display = 'block';
                 } catch (error) {
                     console.log('Falha no envio...', error);
-                    alert('Ocorreu um erro ao enviar a assinatura. Por favor, tente novamente.');
+                    
+                    // Mostrar detalhes do erro (apenas em desenvolvimento)
+                    errorDetails.textContent = error.text || 'Erro desconhecido';
+                    errorMessage.style.display = 'block';
                     
                     // Reativar botão
                     confirmBtn.disabled = false;
